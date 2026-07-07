@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:29:23 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:29:24 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:37:09 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int	init_dongles(t_all *all)
 	i = 0;
 	if (!set_memory(all))
 	{
-		destroy_all(all, all->coders);
+		destroy_all(all);
 		return (0);
 	}
 	while (i < all->params.nb_coders)
 	{
 		if (!init_dongle(&all->dongles[i], all->params.nb_coders))
 		{
-			destroy_all(all, all->coders);
+			destroy_all(all);
 		}
 		i++;
 	}

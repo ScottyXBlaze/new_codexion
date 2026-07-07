@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:35:51 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:38:00 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,12 @@ long int				get_time(t_all *all);
 
 // Initializer
 int						init_fifo(t_fifo *fifo, int capacity);
+int						init_heap(t_heap *heap, int capacity);
 
 // Destructor
 int						destroy_dongles(t_all *all);
 void					destroy_all(t_all *all);
-void	destroy_fifo(t_fifo *fifo);
+void					destroy_fifo(t_fifo *fifo);
+void	destroy_heap(t_heap *heap);
 
 #endif
