@@ -8,10 +8,14 @@ SRC	=	codexion.c \
 		fifo_utils.c \
 		init_all.c \
 		init_dongle.c \
+		dongle.c \
 		time.c \
 		coder.c \
 		destroy_all.c \
 		monitor.c \
+		init_coder.c \
+		fifo.c \
+		edf.c \
 
 
 OBJS = $(SRC:.c=.o)
