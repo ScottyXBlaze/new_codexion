@@ -6,13 +6,14 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:24:45 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:26:07 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:55:56 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-bool	is_running(t_all *all);
+bool		is_running(t_all *all);
+
 long int	get_time(t_all *all)
 {
 	struct timeval	tv;

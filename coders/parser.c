@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:50:20 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:05:01 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:55:48 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,3 @@ static t_scheduler	scheduler(char *str)
 		return (fifo);
 	return (edf);
 }
-
