@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 22:14:18 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 22:19:29 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct s_all
 	bool				running;
 	pthread_mutex_t		running_mutex;
 	pthread_mutex_t		message_mutex;
-	pthread_mutex_t		coders_mutex;
 	pthread_t			monitor;
 
 	t_dongle			*dongles;
@@ -144,10 +143,10 @@ void					*monitor_loop(void *args);
 // Dongle utils
 int						can_take_dongle(t_all *all, t_dongle *dongle);
 void					unlock_dongle(t_all *all, t_dongle *dongle);
-void					lock_dongle(t_coder *coder, t_dongle *dongle);
+int						lock_dongle(t_coder *coder, t_dongle *dongle);
 
-void					lock_dongle_fifo(t_coder *coder, t_dongle *dongle);
-void					lock_dongle_edf(t_coder *coder, t_dongle *dongle);
+int						lock_dongle_fifo(t_coder *coder, t_dongle *dongle);
+int						lock_dongle_edf(t_coder *coder, t_dongle *dongle);
 
 // Print status
 void					print_state(t_coder *coder, t_state state);

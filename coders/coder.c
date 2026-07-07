@@ -16,6 +16,7 @@
 static void	coder_compile(t_coder *coder);
 static void	coder_debug(t_coder *coder);
 static void	coder_refactor(t_coder *coder);
+static int	one_coder_case(t_coder *coder);
 
 void	*coder_loop(void *args)
 {
@@ -27,20 +28,32 @@ void	*coder_loop(void *args)
 	pthread_mutex_lock(&coder->mutex);
 	coder->last_compile = get_time(coder->all);
 	pthread_mutex_unlock(&coder->mutex);
+	if (coder->all->params.nb_coders == 1)
+		return (one_coder_case(coder), NULL);
 	while (is_running(coder->all))
 	{
 		if (coder->id % 2 == 0)
 		{
-			lock_dongle(coder, coder->r_dongle);
+			if (!lock_dongle(coder, coder->r_dongle))
+				break ;
 			print_state(coder, take_dongle);
-			lock_dongle(coder, coder->l_dongle);
+			if (!lock_dongle(coder, coder->l_dongle))
+			{
+				unlock_dongle(coder->all, coder->r_dongle);
+				break ;
+			}
 			print_state(coder, take_dongle);
 		}
 		else
 		{
-			lock_dongle(coder, coder->l_dongle);
+			if (!lock_dongle(coder, coder->l_dongle))
+				break ;
 			print_state(coder, take_dongle);
-			lock_dongle(coder, coder->r_dongle);
+			if (!lock_dongle(coder, coder->r_dongle))
+			{
+				unlock_dongle(coder->all, coder->l_dongle);
+				break ;
+			}
 			print_state(coder, take_dongle);
 		}
 		coder_compile(coder);
@@ -58,6 +71,17 @@ void	*coder_loop(void *args)
 		}
 	}
 	return (NULL);
+}
+
+static int	one_coder_case(t_coder *coder)
+{
+	if (!lock_dongle(coder, coder->l_dongle))
+		return (0);
+	print_state(coder, take_dongle);
+	while (is_running(coder->all))
+		usleep(100);
+	unlock_dongle(coder->all, coder->l_dongle);
+	return (1);
 }
 
 static void	coder_compile(t_coder *coder)

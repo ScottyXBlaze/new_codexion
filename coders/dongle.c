@@ -23,10 +23,9 @@ void	unlock_dongle(t_all *all, t_dongle *dongle)
 	pthread_mutex_unlock(&dongle->mutex);
 }
 
-void	lock_dongle(t_coder *coder, t_dongle *dongle)
+int	lock_dongle(t_coder *coder, t_dongle *dongle)
 {
 	if (coder->all->params.scheduler == fifo)
-		lock_dongle_fifo(coder, dongle);
-	else
-		lock_dongle_edf(coder, dongle);
+		return (lock_dongle_fifo(coder, dongle));
+	return (lock_dongle_edf(coder, dongle));
 }

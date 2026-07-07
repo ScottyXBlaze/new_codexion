@@ -117,7 +117,7 @@ void	heap_pop(t_heap *heap)
 	pthread_mutex_unlock(&heap->mutex);
 }
 
-void	lock_dongle_edf(t_coder *coder, t_dongle *dongle)
+int	lock_dongle_edf(t_coder *coder, t_dongle *dongle)
 {
 	long int	remaining_cooldown;
 
@@ -130,7 +130,7 @@ void	lock_dongle_edf(t_coder *coder, t_dongle *dongle)
 			if (can_take_dongle(coder->all, dongle))
 			{
 				heap_pop(&dongle->edf);
-				return ;
+				return (1);
 			}
 			remaining_cooldown = dongle->available_at - get_time(coder->all);
 			pthread_mutex_unlock(&dongle->mutex);
@@ -145,4 +145,5 @@ void	lock_dongle_edf(t_coder *coder, t_dongle *dongle)
 		}
 		usleep(100);
 	}
+	return (0);
 }

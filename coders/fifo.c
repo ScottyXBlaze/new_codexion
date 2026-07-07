@@ -47,7 +47,7 @@ void	fifo_pop(t_fifo *fifo)
 	pthread_mutex_unlock(&fifo->mutex);
 }
 
-void	lock_dongle_fifo(t_coder *coder, t_dongle *dongle)
+int	lock_dongle_fifo(t_coder *coder, t_dongle *dongle)
 {
 	long int	remaining_cooldown;
 
@@ -60,7 +60,7 @@ void	lock_dongle_fifo(t_coder *coder, t_dongle *dongle)
 			if (can_take_dongle(coder->all, dongle))
 			{
 				fifo_pop(&dongle->fifo);
-				return ;
+				return (1);
 			}
 			remaining_cooldown = dongle->available_at - get_time(coder->all);
 			pthread_mutex_unlock(&dongle->mutex);
@@ -75,4 +75,5 @@ void	lock_dongle_fifo(t_coder *coder, t_dongle *dongle)
 		}
 		usleep(100);
 	}
+	return (0);
 }
