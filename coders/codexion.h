@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:12:24 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:27:16 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/time.h>
 # include <unistd.h>
 
 typedef struct s_coder	t_coder;
@@ -116,4 +117,10 @@ int						validate_scheduler(char *str);
 
 // The main parsers
 int						parsers(int argc, char **argv, t_all *all);
+
+// Time Utils
+bool					is_running(t_all *all);
+void					stop_simulation(t_all *all);
+void					ft_sleep(long long sleep_time, t_all *all);
+long int				get_time(t_all *all);
 #endif
