@@ -4,6 +4,12 @@ SRC	=	codexion.c \
 	 	validation_int.c \
 	 	validation_shceduler.c \
 	 	parser.c \
+		edf_utils.c \
+		fifo_utils.c \
+		init_all.c \
+		init_dongle.c \
+		time.c \
+
 
 OBJS = $(SRC:.c=.o)
 
