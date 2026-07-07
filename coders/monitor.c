@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coder.c                                            :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/07 17:44:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:46:52 by nyramana         ###   ########.fr       */
+/*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
+/*   Updated: 2026/07/07 17:46:59 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-void	*coder_loop(void *args)
+void	*monitor_loop(void *args)
 {
 	(void)args;
 	return (NULL);

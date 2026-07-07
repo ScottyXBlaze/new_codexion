@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:41:30 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:46:35 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void					ft_sleep(long long sleep_time, t_all *all);
 long int				get_time(t_all *all);
 
 // Initializer
-int	init_all(t_all *all);
+int						init_all(t_all *all);
 int						init_dongles(t_all *all);
 int						init_fifo(t_fifo *fifo, int capacity);
 int						init_heap(t_heap *heap, int capacity);
@@ -135,5 +135,9 @@ int						destroy_dongles(t_all *all);
 void					destroy_all(t_all *all);
 void					destroy_fifo(t_fifo *fifo);
 void					destroy_heap(t_heap *heap);
+
+// Thread coder
+void					*coder_loop(void *args);
+void	*monitor_loop(void *args);
 
 #endif

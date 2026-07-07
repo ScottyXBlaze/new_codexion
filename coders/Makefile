@@ -9,6 +9,9 @@ SRC	=	codexion.c \
 		init_all.c \
 		init_dongle.c \
 		time.c \
+		coder.c \
+		destroy_all.c \
+		monitor.c \
 
 
 OBJS = $(SRC:.c=.o)
