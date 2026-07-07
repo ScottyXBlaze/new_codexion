@@ -6,11 +6,12 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 22:07:16 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 23:32:29 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+#include <stdbool.h>
 
 void	*monitor_loop(void *args)
 {
@@ -35,9 +36,9 @@ void	*monitor_loop(void *args)
 			pthread_mutex_lock(&all->coders[i].mutex);
 			last = all->coders[i].last_compile;
 			finished = all->coders[i].is_finished;
+			pthread_mutex_unlock(&all->coders[i].mutex);
 			if (!finished)
 				end_simulation = false;
-			pthread_mutex_unlock(&all->coders[i].mutex);
 			if (now - last > all->params.burnout && !finished)
 			{
 				stop_simulation(all);
@@ -55,3 +56,4 @@ void	*monitor_loop(void *args)
 	}
 	return (NULL);
 }
+

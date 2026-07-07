@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 21:55:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 21:57:10 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 22:38:55 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	is_higher_priority(t_coder *a, t_coder *b)
 		return (a_deadline < b_deadline);
 	return (a->id < b->id);
 }
-
 
 void	heap_push(t_heap *heap, t_coder *coder)
 {

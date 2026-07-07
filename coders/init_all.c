@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:40:53 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:41:10 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 22:16:44 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,5 @@ int	init_all(t_all *all)
 	}
 	all->start_time = get_time(all);
 	all->running = true;
-	if (pthread_create(&all->monitor, NULL, monitor_loop, all))
-	{
-		destroy_all(all);
-		return (0);
-	}
 	return (1);
 }

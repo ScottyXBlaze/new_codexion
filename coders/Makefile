@@ -16,6 +16,7 @@ SRC	=	codexion.c \
 		init_coder.c \
 		fifo.c \
 		edf.c \
+		coder_state.c \
 
 
 OBJS = $(SRC:.c=.o)

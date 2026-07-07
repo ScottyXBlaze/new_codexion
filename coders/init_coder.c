@@ -39,6 +39,11 @@ int	init_coders(t_all *all)
 		}
 		i++;
 	}
+	if (pthread_create(&all->monitor, NULL, monitor_loop, all))
+	{
+		destroy_all(all);
+		return (0);
+	}
 	init_thread_coders(all->coders);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 22:19:29 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 23:39:48 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,4 +150,9 @@ int						lock_dongle_edf(t_coder *coder, t_dongle *dongle);
 
 // Print status
 void					print_state(t_coder *coder, t_state state);
+
+// Coder state
+void	coder_compile(t_coder *coder);
+void	coder_debug(t_coder *coder);
+void	coder_refactor(t_coder *coder);
 #endif
