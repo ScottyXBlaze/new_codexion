@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:27:16 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:35:51 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,13 @@ bool					is_running(t_all *all);
 void					stop_simulation(t_all *all);
 void					ft_sleep(long long sleep_time, t_all *all);
 long int				get_time(t_all *all);
+
+// Initializer
+int						init_fifo(t_fifo *fifo, int capacity);
+
+// Destructor
+int						destroy_dongles(t_all *all);
+void					destroy_all(t_all *all);
+void	destroy_fifo(t_fifo *fifo);
+
 #endif
