@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:44:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 23:41:56 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 23:59:40 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	one_coder_case(t_coder *coder);
 static int	reserve_dongle(t_coder *coder);
+static void	run_loop(t_coder *coder);
 
 void	*coder_loop(void *args)
 {
@@ -27,15 +28,11 @@ void	*coder_loop(void *args)
 	pthread_mutex_unlock(&coder->mutex);
 	if (coder->all->params.nb_coders == 1)
 		return (one_coder_case(coder), NULL);
+	run_loop(coder);
 	while (is_running(coder->all))
 	{
 		if (!reserve_dongle(coder))
 			break ;
-		coder_compile(coder);
-		unlock_dongle(coder->all, coder->l_dongle);
-		unlock_dongle(coder->all, coder->r_dongle);
-		coder_debug(coder);
-		coder_refactor(coder);
 		if (coder->all->params.compiles_required > 0
 			&& coder->compile_count >= coder->all->params.compiles_required)
 		{
@@ -86,4 +83,13 @@ static int	reserve_dongle(t_coder *coder)
 		print_state(coder, take_dongle);
 	}
 	return (1);
+}
+
+static void	run_loop(t_coder *coder)
+{
+	coder_compile(coder);
+	unlock_dongle(coder->all, coder->l_dongle);
+	unlock_dongle(coder->all, coder->r_dongle);
+	coder_debug(coder);
+	coder_refactor(coder);
 }

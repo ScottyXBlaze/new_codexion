@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 23:32:29 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/07 23:53:45 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ void	*monitor_loop(void *args)
 	}
 	return (NULL);
 }
-
