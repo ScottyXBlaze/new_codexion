@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:44:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 23:59:40 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/10 20:18:54 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	*coder_loop(void *args)
 	pthread_mutex_unlock(&coder->mutex);
 	if (coder->all->params.nb_coders == 1)
 		return (one_coder_case(coder), NULL);
-	run_loop(coder);
 	while (is_running(coder->all))
 	{
 		if (!reserve_dongle(coder))
 			break ;
+		run_loop(coder);
 		if (coder->all->params.compiles_required > 0
 			&& coder->compile_count >= coder->all->params.compiles_required)
 		{
