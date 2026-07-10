@@ -22,7 +22,7 @@ SRC	=	codexion.c \
 OBJS = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -pthread -g
+CFLAGS = -Wall -Werror -Wextra -pthread
 RM = rm -rf
 
 $(NAME): $(OBJS)
@@ -34,14 +34,12 @@ $(NAME): $(OBJS)
 all: $(NAME)
 
 clean: 
-	$(RM) $(OBJS) 
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
 
-.PHONY:	all clean fclean re so
+
+.PHONY:	all clean fclean re
