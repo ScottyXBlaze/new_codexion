@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 23:53:39 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/10 19:31:21 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int						init_dongles(t_all *all);
 int						init_fifo(t_fifo *fifo, int capacity);
 int						init_heap(t_heap *heap, int capacity);
 int						init_coders(t_all *all);
+
 // Destructor
 int						destroy_dongles(t_all *all);
 void					destroy_all(t_all *all);
@@ -155,4 +156,5 @@ void					print_state(t_coder *coder, t_state state);
 void					coder_compile(t_coder *coder);
 void					coder_debug(t_coder *coder);
 void					coder_refactor(t_coder *coder);
+
 #endif

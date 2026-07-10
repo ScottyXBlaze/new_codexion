@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 23:53:45 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/10 19:30:17 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	*monitor_loop(void *args)
 		if (end_simulation)
 		{
 			stop_simulation(all);
-			break ;
+			return (NULL);
 		}
 		usleep(100);
 	}
