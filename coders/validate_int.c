@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_int.c                                   :+:      :+:    :+:   */
+/*   validate_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:52:03 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:12:37 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/10 23:02:13 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	validate_int(char *str)
 	i = 0;
 	str = remove_unnecessary(str);
 	if (!str[i])
-		printf("Invalid parameter: %s\n", str);
+		printf("Invalid parameter: '%s'\n", str);
 	if (!str[i])
 		return (0);
 	while (str[i])
 	{
 		if (!ft_isnumber(str[i]))
 		{
-			printf("Should be number: %s\n", str);
+			printf("Should be number: '%s'\n", str);
 			return (0);
 		}
 		i++;
@@ -38,7 +38,7 @@ int	validate_int(char *str)
 	len = i;
 	if (len > 10 || (len == 10 && strcmp(str, "2147483647") > 0))
 	{
-		printf("Number too large: %s\n", str);
+		printf("Number too large: '%s'\n", str);
 		return (0);
 	}
 	return (1);

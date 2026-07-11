@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_shceduler.c                             :+:      :+:    :+:   */
+/*   validate_shceduler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:54:41 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 17:13:11 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 00:40:39 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include <stdio.h>
 
 int	validate_scheduler(char *str)
 {

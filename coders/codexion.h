@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/10 19:31:21 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 12:44:27 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct s_coder
 
 	long long			last_compile;
 	int					compile_count;
-	long int			deadline;
 
 	bool				is_finished;
 
@@ -156,5 +155,8 @@ void					print_state(t_coder *coder, t_state state);
 void					coder_compile(t_coder *coder);
 void					coder_debug(t_coder *coder);
 void					coder_refactor(t_coder *coder);
+
+// Runner
+void					start_program(t_all *all);
 
 #endif

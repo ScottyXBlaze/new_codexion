@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 21:47:31 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 21:55:33 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 00:40:55 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,11 @@ int	lock_dongle_fifo(t_coder *coder, t_dongle *dongle)
 			pthread_mutex_unlock(&dongle->mutex);
 			if (remaining_cooldown > 0)
 			{
-				if (remaining_cooldown > 1)
-					usleep(1000);
-				else
-					usleep(remaining_cooldown * 1000);
+				ft_sleep(remaining_cooldown, coder->all);
 				continue ;
 			}
 		}
-		usleep(100);
+		usleep(500);
 	}
 	return (0);
 }

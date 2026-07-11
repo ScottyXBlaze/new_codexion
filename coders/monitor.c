@@ -6,12 +6,11 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/10 19:30:17 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 00:41:07 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include <stdbool.h>
 
 void	*monitor_loop(void *args)
 {

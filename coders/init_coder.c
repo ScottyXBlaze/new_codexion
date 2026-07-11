@@ -6,13 +6,13 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:49:13 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/07 23:53:45 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 12:44:21 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-static void	init_thread_coders(t_coder *coders);
+static int	init_thread_coders(t_coder *coders);
 static int	set_memory(t_all *all);
 static void	set_coder(t_all *all, t_coder *coders, int i);
 
@@ -37,7 +37,9 @@ int	init_coders(t_all *all)
 		destroy_all(all);
 		return (0);
 	}
-	init_thread_coders(all->coders);
+	if (!init_thread_coders(all->coders))
+		return (destroy_dongles(all), 1);
+
 	return (1);
 }
 
@@ -63,10 +65,9 @@ static void	set_coder(t_all *all, t_coder *coders, int i)
 	coders[i].compile_count = 0;
 	coders[i].last_compile = get_time(all);
 	coders[i].is_finished = false;
-	coders[i].deadline = 0;
 }
 
-static void	init_thread_coders(t_coder *coders)
+static int	init_thread_coders(t_coder *coders)
 {
 	int	i;
 	int	nb_coders;
@@ -76,16 +77,18 @@ static void	init_thread_coders(t_coder *coders)
 	while (i < nb_coders)
 	{
 		if (pthread_create(&coders[i].thread, NULL, coder_loop, &coders[i]))
-			return ;
+			return (0);
 		i++;
 	}
 	i = 0;
 	while (i < nb_coders)
 	{
 		if (pthread_join(coders[i].thread, NULL))
-			return ;
+			return (0);
 		i++;
 	}
 	if (pthread_join(coders->all->monitor, NULL))
-		return ;
+		return (0);
+
+	return (1);
 }
