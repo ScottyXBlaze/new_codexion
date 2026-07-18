@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:40:53 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 13:16:08 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/18 15:40:28 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	init_all(t_all *all)
 	all->running = true;
 	pthread_mutex_unlock(&all->running_mutex);
 	join_coders(all->coders);
+	pthread_join(all->monitor, NULL);
 	return (1);
 }
 
