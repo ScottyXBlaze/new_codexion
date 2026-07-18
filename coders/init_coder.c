@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:49:13 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 12:44:21 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 13:15:27 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	init_coders(t_all *all)
 	}
 	if (!init_thread_coders(all->coders))
 		return (destroy_dongles(all), 1);
-
 	return (1);
 }
 
@@ -80,15 +79,5 @@ static int	init_thread_coders(t_coder *coders)
 			return (0);
 		i++;
 	}
-	i = 0;
-	while (i < nb_coders)
-	{
-		if (pthread_join(coders[i].thread, NULL))
-			return (0);
-		i++;
-	}
-	if (pthread_join(coders->all->monitor, NULL))
-		return (0);
-
 	return (1);
 }

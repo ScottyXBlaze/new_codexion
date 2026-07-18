@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 00:41:07 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 13:07:36 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	*monitor_loop(void *args)
 	long int	now;
 
 	all = (t_all *)args;
-	while (is_running(all) && all->coders == NULL)
-		usleep(100);
+	while (!is_running(all))
+		usleep(500);
 	while (is_running(all))
 	{
 		now = get_time(all);
@@ -51,7 +51,7 @@ void	*monitor_loop(void *args)
 			stop_simulation(all);
 			return (NULL);
 		}
-		usleep(100);
+		usleep(500);
 	}
 	return (NULL);
 }

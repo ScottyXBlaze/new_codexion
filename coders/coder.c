@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:44:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/10 20:18:54 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:59:04 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*coder_loop(void *args)
 
 	coder = (t_coder *)args;
 	while (!is_running(coder->all))
-		usleep(100);
+		usleep(500);
 	pthread_mutex_lock(&coder->mutex);
 	coder->last_compile = get_time(coder->all);
 	pthread_mutex_unlock(&coder->mutex);
@@ -51,7 +51,7 @@ static int	one_coder_case(t_coder *coder)
 		return (0);
 	print_state(coder, take_dongle);
 	while (is_running(coder->all))
-		usleep(100);
+		usleep(500);
 	unlock_dongle(coder->all, coder->l_dongle);
 	return (1);
 }

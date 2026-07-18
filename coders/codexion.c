@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 11:48:24 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 08:12:48 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/11 13:15:15 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	main(int argc, char **argv)
 	memset(&all, 0, sizeof(all));
 	if (!parsers(argc, argv, &all))
 		return (1);
-	if (!init_dongles(&all) || !init_all(&all))
+	if (!init_dongles(&all))
 		return (1);
 	if (!init_coders(&all))
+		return (1);
+	if (!init_all(&all))
 		return (1);
 	destroy_all(&all);
 	return (0);

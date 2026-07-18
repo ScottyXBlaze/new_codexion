@@ -6,11 +6,13 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 21:55:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 00:30:52 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/17 13:56:14 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+static int	is_not_empty(t_heap *heap);
 
 static long int	coder_deadline(t_coder *coder)
 {
@@ -82,17 +84,8 @@ void	heap_pop(t_heap *heap)
 	t_coder	*tmp;
 
 	pthread_mutex_lock(&heap->mutex);
-	if (heap->size <= 0)
-	{
-		pthread_mutex_unlock(&heap->mutex);
+	if (!is_not_empty(heap))
 		return ;
-	}
-	heap->size--;
-	if (heap->size == 0)
-	{
-		pthread_mutex_unlock(&heap->mutex);
-		return ;
-	}
 	heap->array[0] = heap->array[heap->size];
 	index = 0;
 	while (1)
@@ -142,4 +135,20 @@ int	lock_dongle_edf(t_coder *coder, t_dongle *dongle)
 		usleep(500);
 	}
 	return (0);
+}
+
+static int	is_not_empty(t_heap *heap)
+{
+	if (heap->size <= 0)
+	{
+		pthread_mutex_unlock(&heap->mutex);
+		return (0);
+	}
+	heap->size--;
+	if (heap->size == 0)
+	{
+		pthread_mutex_unlock(&heap->mutex);
+		return (0);
+	}
+	return (1);
 }
