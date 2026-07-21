@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 12:44:27 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/18 15:57:21 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,10 @@ void					coder_refactor(t_coder *coder);
 
 // Runner
 void					start_program(t_all *all);
+
+// EDF utils
+void					heap_push(t_heap *heap, t_coder *coder);
+t_coder					*heap_peek(t_heap *heap);
+void					heap_pop(t_heap *heap);
 
 #endif

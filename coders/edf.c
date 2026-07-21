@@ -6,34 +6,47 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 21:55:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/17 13:56:14 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/18 16:00:42 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-static int	is_not_empty(t_heap *heap);
-
-static long int	coder_deadline(t_coder *coder)
-{
-	long int	last_compile;
-
-	pthread_mutex_lock(&coder->mutex);
-	last_compile = coder->last_compile;
-	pthread_mutex_unlock(&coder->mutex);
-	return (last_compile + coder->all->params.burnout);
-}
-
 static int	is_higher_priority(t_coder *a, t_coder *b)
 {
 	long int	a_deadline;
 	long int	b_deadline;
+	long int	last;
 
-	a_deadline = coder_deadline(a);
-	b_deadline = coder_deadline(b);
+	pthread_mutex_lock(&a->mutex);
+	last = a->last_compile;
+	pthread_mutex_unlock(&a->mutex);
+	a_deadline = last + a->all->params.burnout;
+	pthread_mutex_lock(&b->mutex);
+	last = b->last_compile;
+	pthread_mutex_unlock(&b->mutex);
+	b_deadline = last + b->all->params.burnout;
 	if (a_deadline != b_deadline)
 		return (a_deadline < b_deadline);
 	return (a->id < b->id);
+}
+
+static int	get_smallest_child(t_heap *heap, int index)
+{
+	int	left;
+	int	right;
+	int	smallest;
+
+	left = (index * 2) + 1;
+	right = (index * 2) + 2;
+	smallest = index;
+	if (left < heap->size && is_higher_priority(heap->array[left],
+			heap->array[smallest]))
+		smallest = left;
+	if (right < heap->size && is_higher_priority(heap->array[right],
+			heap->array[smallest]))
+		smallest = right;
+	return (smallest);
 }
 
 void	heap_push(t_heap *heap, t_coder *coder)
@@ -63,42 +76,16 @@ void	heap_push(t_heap *heap, t_coder *coder)
 	pthread_mutex_unlock(&heap->mutex);
 }
 
-t_coder	*heap_peek(t_heap *heap)
-{
-	t_coder	*coder;
-
-	pthread_mutex_lock(&heap->mutex);
-	coder = NULL;
-	if (heap->size > 0)
-		coder = heap->array[0];
-	pthread_mutex_unlock(&heap->mutex);
-	return (coder);
-}
-
-void	heap_pop(t_heap *heap)
+static void	sift_down(t_heap *heap)
 {
 	int		index;
-	int		left;
-	int		right;
 	int		smallest;
 	t_coder	*tmp;
 
-	pthread_mutex_lock(&heap->mutex);
-	if (!is_not_empty(heap))
-		return ;
-	heap->array[0] = heap->array[heap->size];
 	index = 0;
 	while (1)
 	{
-		left = (index * 2) + 1;
-		right = (index * 2) + 2;
-		smallest = index;
-		if (left < heap->size && is_higher_priority(heap->array[left],
-				heap->array[smallest]))
-			smallest = left;
-		if (right < heap->size && is_higher_priority(heap->array[right],
-				heap->array[smallest]))
-			smallest = right;
+		smallest = get_smallest_child(heap, index);
 		if (smallest == index)
 			break ;
 		tmp = heap->array[index];
@@ -106,49 +93,23 @@ void	heap_pop(t_heap *heap)
 		heap->array[smallest] = tmp;
 		index = smallest;
 	}
-	pthread_mutex_unlock(&heap->mutex);
 }
 
-int	lock_dongle_edf(t_coder *coder, t_dongle *dongle)
+void	heap_pop(t_heap *heap)
 {
-	long int	remaining_cooldown;
-
-	heap_push(&dongle->edf, coder);
-	while (is_running(coder->all))
-	{
-		if (heap_peek(&dongle->edf) == coder)
-		{
-			pthread_mutex_lock(&dongle->mutex);
-			if (can_take_dongle(coder->all, dongle))
-			{
-				heap_pop(&dongle->edf);
-				return (1);
-			}
-			remaining_cooldown = dongle->available_at - get_time(coder->all);
-			pthread_mutex_unlock(&dongle->mutex);
-			if (remaining_cooldown > 0)
-			{
-				ft_sleep(remaining_cooldown, coder->all);
-				continue ;
-			}
-		}
-		usleep(500);
-	}
-	return (0);
-}
-
-static int	is_not_empty(t_heap *heap)
-{
+	pthread_mutex_lock(&heap->mutex);
 	if (heap->size <= 0)
 	{
 		pthread_mutex_unlock(&heap->mutex);
-		return (0);
+		return ;
 	}
 	heap->size--;
 	if (heap->size == 0)
 	{
 		pthread_mutex_unlock(&heap->mutex);
-		return (0);
+		return ;
 	}
-	return (1);
+	heap->array[0] = heap->array[heap->size];
+	sift_down(heap);
+	pthread_mutex_unlock(&heap->mutex);
 }
