@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/18 15:57:21 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/21 11:58:56 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_all
 	pthread_mutex_t		running_mutex;
 	pthread_mutex_t		message_mutex;
 	pthread_t			monitor;
-
 	t_dongle			*dongles;
 	t_coder				*coders;
 
@@ -107,40 +106,32 @@ typedef struct s_coder
 	t_all				*all;
 }						t_coder;
 
-// String utils
 int						ft_isspace(char c);
 
-// Validation for the parser
 int						validate_int(char *str);
 int						validate_scheduler(char *str);
 
-// The main parsers
 int						parsers(int argc, char **argv, t_all *all);
 
-// Time Utils
 bool					is_running(t_all *all);
 void					stop_simulation(t_all *all);
 void					ft_sleep(long long sleep_time, t_all *all);
 long int				get_time(t_all *all);
 
-// Initializer
 int						init_all(t_all *all);
 int						init_dongles(t_all *all);
 int						init_fifo(t_fifo *fifo, int capacity);
 int						init_heap(t_heap *heap, int capacity);
 int						init_coders(t_all *all);
 
-// Destructor
 int						destroy_dongles(t_all *all);
 void					destroy_all(t_all *all);
 void					destroy_fifo(t_fifo *fifo);
 void					destroy_heap(t_heap *heap);
 
-// Thread coder
 void					*coder_loop(void *args);
 void					*monitor_loop(void *args);
 
-// Dongle utils
 int						can_take_dongle(t_all *all, t_dongle *dongle);
 void					unlock_dongle(t_all *all, t_dongle *dongle);
 int						lock_dongle(t_coder *coder, t_dongle *dongle);
@@ -148,18 +139,14 @@ int						lock_dongle(t_coder *coder, t_dongle *dongle);
 int						lock_dongle_fifo(t_coder *coder, t_dongle *dongle);
 int						lock_dongle_edf(t_coder *coder, t_dongle *dongle);
 
-// Print status
 void					print_state(t_coder *coder, t_state state);
 
-// Coder state
 void					coder_compile(t_coder *coder);
 void					coder_debug(t_coder *coder);
 void					coder_refactor(t_coder *coder);
 
-// Runner
 void					start_program(t_all *all);
 
-// EDF utils
 void					heap_push(t_heap *heap, t_coder *coder);
 t_coder					*heap_peek(t_heap *heap);
 void					heap_pop(t_heap *heap);

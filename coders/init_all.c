@@ -6,13 +6,11 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:40:53 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/18 15:40:28 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/21 11:59:50 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include <pthread.h>
-#include <unistd.h>
 
 static void	join_coders(t_coder *coders);
 
