@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:50:20 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/22 08:46:14 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:42:59 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ static t_scheduler	scheduler(char *str)
 
 static void	print_help(void)
 {
+	
+	printf("[USAGE] ./XXXXXXXX ----<%dMAX>---- -----<int>----- ", MAX_CODER);
+	printf("-----<int>----- ----<int>---- -----<int>------ -----");
+	printf("------<int>----------- -----<int>----- fifo||edf\n");
 	printf("[USAGE] ./codexion number_of_coders time_to_burnout ");
 	printf("time_to_compile time_to_debug time_to_refactor number_of_");
 	printf("compiles_required dongle_cooldown scheduler\n");
