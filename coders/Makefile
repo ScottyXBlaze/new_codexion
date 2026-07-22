@@ -1,8 +1,7 @@
 NAME=codexion
 
 SRC	=	codexion.c \
-	 	validate_int.c \
-	 	validate_shceduler.c \
+	 	validation.c \
 	 	parser.c \
 		edf_utils.c \
 		fifo_utils.c \

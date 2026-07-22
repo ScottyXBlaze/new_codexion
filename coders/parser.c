@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:50:20 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 00:41:13 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/22 08:46:14 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ int	parsers(int argc, char **argv, t_all *all)
 	if (all->params.nb_coders == 0)
 	{
 		printf("[ERROR] Not enough coder\n");
+		return (print_help(), 0);
+	}
+	if (all->params.nb_coders > MAX_CODER)
+	{
+		printf("[ERROR] Too many coders\n");
 		return (print_help(), 0);
 	}
 	return (1);

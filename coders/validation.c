@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:52:03 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/10 23:02:13 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/22 08:45:28 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,15 @@ int	ft_isspace(char c)
 static int	ft_isnumber(char c)
 {
 	return ('0' <= c && c <= '9');
+}
+
+int	validate_scheduler(char *str)
+{
+	while (ft_isspace(*str))
+		str++;
+	if (strcmp(str, "fifo") == 0 || strcmp(str, "edf") == 0)
+		return (1);
+	printf("[ERROR] Invalid scheduler parameter %s\n", str);
+	printf("Should be 'fifo' of 'edf'\n");
+	return (0);
 }

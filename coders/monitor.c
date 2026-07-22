@@ -16,7 +16,7 @@ static int	check_coders(t_all *all, long int now)
 {
 	int			i;
 	long int	last;
-	int		finished;
+	int			finished;
 
 	i = 0;
 	while (i < all->params.nb_coders)
