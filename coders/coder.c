@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:44:58 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/17 14:59:04 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/21 13:54:25 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*coder_loop(void *args)
 			&& coder->compile_count >= coder->all->params.compiles_required)
 		{
 			pthread_mutex_lock(&coder->mutex);
-			coder->is_finished = true;
+			coder->is_finished = 1;
 			pthread_mutex_unlock(&coder->mutex);
 			break ;
 		}

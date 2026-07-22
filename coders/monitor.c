@@ -6,17 +6,17 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 13:07:36 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/21 13:55:10 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-static bool	check_coders(t_all *all, long int now)
+static int	check_coders(t_all *all, long int now)
 {
 	int			i;
 	long int	last;
-	bool		finished;
+	int		finished;
 
 	i = 0;
 	while (i < all->params.nb_coders)
@@ -29,13 +29,13 @@ static bool	check_coders(t_all *all, long int now)
 		{
 			stop_simulation(all);
 			print_state(&all->coders[i], burned_out);
-			return (true);
+			return (1);
 		}
 		if (!finished)
-			return (false);
+			return (0);
 		i++;
 	}
-	return (true);
+	return (1);
 }
 
 void	*monitor_loop(void *args)

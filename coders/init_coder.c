@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:49:13 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/11 13:15:27 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/21 13:56:07 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	set_coder(t_all *all, t_coder *coders, int i)
 	coders[i].r_dongle = &all->dongles[(i + 1) % all->params.nb_coders];
 	coders[i].compile_count = 0;
 	coders[i].last_compile = get_time(all);
-	coders[i].is_finished = false;
+	coders[i].is_finished = 1;
 }
 
 static int	init_thread_coders(t_coder *coders)

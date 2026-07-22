@@ -6,13 +6,12 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:24:45 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/14 16:43:21 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/21 13:55:40 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-bool		is_running(t_all *all);
 
 long int	get_time(t_all *all)
 {
@@ -38,9 +37,9 @@ void	ft_sleep(long long sleep_time, t_all *all)
 	}
 }
 
-bool	is_running(t_all *all)
+int	is_running(t_all *all)
 {
-	bool	status;
+	int	status;
 
 	pthread_mutex_lock(&all->running_mutex);
 	status = all->running;
@@ -52,6 +51,6 @@ void	stop_simulation(t_all *all)
 {
 	pthread_mutex_lock(&all->running_mutex);
 	if (all->running)
-		all->running = false;
+		all->running = 0;
 	pthread_mutex_unlock(&all->running_mutex);
 }

@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:40:53 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/21 11:59:50 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/21 13:54:34 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_all(t_all *all)
 	all->start_time = get_time(all);
 	ft_sleep(100000, all);
 	pthread_mutex_lock(&all->running_mutex);
-	all->running = true;
+	all->running = 1;
 	pthread_mutex_unlock(&all->running_mutex);
 	join_coders(all->coders);
 	pthread_join(all->monitor, NULL);
