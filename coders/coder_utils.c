@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:49:13 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/21 13:56:07 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:55:06 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,12 @@ static int	init_thread_coders(t_coder *coders)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int	destroy_coders(t_coder *coders)
+{
+	free(coders);
+	coders = NULL;
 	return (1);
 }

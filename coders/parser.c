@@ -78,7 +78,6 @@ static t_scheduler	scheduler(char *str)
 
 static void	print_help(void)
 {
-	
 	printf("[USAGE] ./XXXXXXXX ----<%dMAX>---- -----<int>----- ", MAX_CODER);
 	printf("-----<int>----- ----<int>---- -----<int>------ -----");
 	printf("------<int>----------- -----<int>----- fifo||edf\n");
