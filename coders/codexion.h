@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:38:48 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/21 13:54:16 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/22 08:05:58 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
+
+# ifndef MAX_CODER
+#  define MAX_CODER 500
+
+# endif
 
 typedef struct s_coder	t_coder;
 
@@ -79,7 +84,7 @@ typedef struct s_all
 {
 	t_params			params;
 	long long			start_time;
-	int				running;
+	int					running;
 	pthread_mutex_t		running_mutex;
 	pthread_mutex_t		message_mutex;
 	pthread_t			monitor;
@@ -97,7 +102,7 @@ typedef struct s_coder
 	long long			last_compile;
 	int					compile_count;
 
-	int				is_finished;
+	int					is_finished;
 
 	t_dongle			*l_dongle;
 	t_dongle			*r_dongle;
@@ -112,7 +117,7 @@ int						validate_scheduler(char *str);
 
 int						parsers(int argc, char **argv, t_all *all);
 
-int					is_running(t_all *all);
+int						is_running(t_all *all);
 void					stop_simulation(t_all *all);
 void					ft_sleep(long long sleep_time, t_all *all);
 long int				get_time(t_all *all);

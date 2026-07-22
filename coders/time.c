@@ -12,7 +12,6 @@
 
 #include "codexion.h"
 
-
 long int	get_time(t_all *all)
 {
 	struct timeval	tv;
