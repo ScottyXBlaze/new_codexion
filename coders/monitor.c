@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:46:18 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/21 13:55:10 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:34:02 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ static int	check_coders(t_all *all, long int now)
 	int			i;
 	long int	last;
 	int			finished;
+	int			all_finished;
 
 	i = 0;
+	all_finished = 1;
 	while (i < all->params.nb_coders)
 	{
 		pthread_mutex_lock(&all->coders[i].mutex);
@@ -32,10 +34,10 @@ static int	check_coders(t_all *all, long int now)
 			return (1);
 		}
 		if (!finished)
-			return (0);
+			all_finished = 0;
 		i++;
 	}
-	return (1);
+	return (all_finished);
 }
 
 void	*monitor_loop(void *args)

@@ -63,7 +63,7 @@ static void	set_coder(t_all *all, t_coder *coders, int i)
 	coders[i].r_dongle = &all->dongles[(i + 1) % all->params.nb_coders];
 	coders[i].compile_count = 0;
 	coders[i].last_compile = get_time(all);
-	coders[i].is_finished = 1;
+	coders[i].is_finished = 0;
 }
 
 static int	init_thread_coders(t_coder *coders)
