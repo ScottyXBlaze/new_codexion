@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:50:20 by nyramana          #+#    #+#             */
-/*   Updated: 2026/07/22 14:42:59 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/07/23 12:43:42 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void			print_help(void);
 
 int	parsers(int argc, char **argv, t_all *all)
 {
-	if (validate_args(argc, argv) == 0)
+	if (!validate_args(argc, argv))
 		return (0);
 	all->params.nb_coders = atoi(argv[1]);
 	all->params.burnout = atoi(argv[2]);
@@ -78,7 +78,7 @@ static t_scheduler	scheduler(char *str)
 
 static void	print_help(void)
 {
-	printf("[USAGE] ./XXXXXXXX ----<%dMAX>---- -----<int>----- ", MAX_CODER);
+	printf("\n[USAGE] ./XXXXXXXX ----<%dMAX>---- -----<int>----- ", MAX_CODER);
 	printf("-----<int>----- ----<int>---- -----<int>------ -----");
 	printf("------<int>----------- -----<int>----- fifo||edf\n");
 	printf("[USAGE] ./codexion number_of_coders time_to_burnout ");
